@@ -108,11 +108,11 @@ namespace ClassLibrary
     }
 
     // Implementerer en prioritetskø som et array af køer. Det er en meget simpel måde til at implementere en prioritets kø, og som
-    // også virker, men der er bedre måder til det. Denne implementering er bedst egent, hvis antallet af prioiteter er få, da
+    // også virker, men der er bedre måder til det. Denne implementering er bedst egnet, hvis antallet af prioriteter er få, da
     // kompleksiteten af klassens metoder er knyttet til antallet af prioriteter P.
     public class PQueue<T> : IPriorityQueue<T>
     {
-        private Queue<T>[] queue;     // array af køer til den prioritetskø - hvert array svarer til en prioritet
+        private Queue<T>[] queue;     // array af køer til en prioritetskø - hvert array svarer til en prioritet
 
         // Opretter en prioritetskø med n prioriteter
         public PQueue(int n)
@@ -178,7 +178,8 @@ namespace ClassLibrary
         // Sletter indholdet af køen: O(P)
         public void Clear()
         {
-            for (int n = 0; n < queue.Length; ++n) queue[n].Clear();
+            for (int n = 0; n < queue.Length; ++n)
+                queue[n].Clear();
         }
 
 		// Implementerer iterator mønsteret. Det er ikke oplagt, at det er fornuftigt at implementere dette mønster på en kø, da

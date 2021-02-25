@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,15 +21,21 @@ namespace MartinSem2Aflevering1
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		
 		public MainWindow()
 		{
 			InitializeComponent();
 		}
 
-		private void AddCallClick(object sender, RoutedEventArgs e)
+		private void ExitClick(object sender, RoutedEventArgs e)
 		{
-			Model.b.CallHandling ch = new Model.b.CallHandling();
-			ch.CreateCall();
+			Application.Current.Shutdown();
+		}
+
+		private void StartClick(object sender, RoutedEventArgs e)
+		{
+			UseClassLibrary.HandleCall handle = new UseClassLibrary.HandleCall();
+			handle.GenerateCalls();
 		}
 	}
 }

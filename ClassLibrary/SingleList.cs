@@ -100,7 +100,7 @@ namespace ClassLibrary
                     ++count;
                     return;
                 }
-            throw new SingleListException(string.Format("The element {0} not found", elem1));
+            throw new SingleListException(string.Format($"The element {elem1} not found"));
         }
 
         // Metoden returnerer true, hvis elementet elem findes i listen.
@@ -145,7 +145,7 @@ namespace ClassLibrary
                     --count;
                     return;
                 }
-            throw new SingleListException(string.Format("The element {0} not found", elem));
+            throw new SingleListException(string.Format($"The element {elem} not found"));
         }
 
         // Sletter indholdet af listen. Metoden har konstant tidskompleksitet.
@@ -158,7 +158,8 @@ namespace ClassLibrary
         // Implementerer iterator mønsteret
         public IEnumerator<T> GetEnumerator()
         {
-            for (Node node = start; node != null; node = node.Next) yield return node.Element;
+            for (Node node = start; node != null; node = node.Next) 
+                yield return node.Element;
         }
 
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator()
@@ -171,7 +172,8 @@ namespace ClassLibrary
         {
             T[] arr = new T[count];
             int n = 0;
-            for (Node node = start; node != null; node = node.Next) arr[n++] = node.Element;
+            for (Node node = start; node != null; node = node.Next) 
+                arr[n++] = node.Element;
             return arr;
         }
 
@@ -182,12 +184,13 @@ namespace ClassLibrary
             {
                 T[] arr = new T[count];
                 int n = 0;
-                for (Node node = start; node != null; node = node.Next) arr[n++] = Tools.Clone(node.Element);
+                for (Node node = start; node != null; node = node.Next) 
+                    arr[n++] = Tools.Clone(node.Element);
                 return arr;
             }
             catch
             {
-                throw new SingleListException(string.Format("{0} er ikke serialiserbar", typeof(T)));
+                throw new SingleListException(string.Format($"{typeof(T)} er ikke serialiserbar"));
             }
         }
 
@@ -199,8 +202,8 @@ namespace ClassLibrary
             builder.Append("[");
             if (count > 0)
             {
-                builder.Append(string.Format(" {0}", start.Element));
-                for (Node node = start.Next; node != null; node = node.Next) builder.Append(string.Format(", {0}", node.Element));
+                builder.Append(string.Format($" {start.Element}"));
+                for (Node node = start.Next; node != null; node = node.Next) builder.Append(string.Format($", {node.Element}"));
             }
             builder.Append(" ]");
             return builder.ToString();
