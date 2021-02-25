@@ -24,5 +24,11 @@ namespace MartinSem2Aflevering1
 		{
 			InitializeComponent();
 		}
+
+		private void AddCallClick(object sender, RoutedEventArgs e)
+		{
+			Model.b.CallHandling ch = new Model.b.CallHandling();
+			ch.CreateCall();
+		}
 	}
 }
