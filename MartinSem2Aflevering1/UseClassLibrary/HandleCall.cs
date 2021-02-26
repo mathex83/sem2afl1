@@ -10,18 +10,26 @@ namespace MartinSem2Aflevering1.UseClassLibrary
 {
 	class HandleCall
 	{
+		public static MainWindow mw = new MainWindow();
 		private static Random rand = new Random();
-		private SingleList<string> vipList = new SingleList<string>();
-		
-		private PQueue<string> mainQ = new PQueue<string>(100);
-		private PQueue<string> vipQ = new PQueue<string>(100);
-		private int maxNumber = 44445;
-		private int lowestBloodPriority = 10;
+		private static SingleList<string> vipList = new SingleList<string>();		//represents a list of VIP-callers.
+		private SingleList<string> endedList = new SingleList<string>();	//represents the items that has been handled.
 
-		private void StartUp()
+		private static PQueue<string> mainQ = new PQueue<string>(10);				//The priority-queue with all the incoming calls.
+		private static PQueue<string> vipQ = new PQueue<string>(10);              //If a caller is VIP it's added to this queue aswell.
+		
+		private const int maxNumber = 44445;
+		private const int lowestBloodPriority = 6;
+		public static List<DgRow> dgRows;
+
+		public void StartUp()
 		{
 			mainQ.Clear();
 			vipQ.Clear();
+			endedList.Clear();
+			//mainDT.Columns.Add("Number", typeof(string));
+			//mainDT.Columns.Add("Priority", typeof(int));
+			//System.Data.DataRow myRow;
 
 			vipList.AddLast("11111");
 			vipList.AddLast("22222");
@@ -35,29 +43,46 @@ namespace MartinSem2Aflevering1.UseClassLibrary
 			vipList.AddLast("20000");
 			vipList.AddLast("30000");
 			vipList.AddLast("40000");
+						
 		}
-		public void GenerateCalls()
-		{
-			string a = rand.Next(1, maxNumber).ToString("D5");
-			
-			if (!mainQ.Contains(a))
+		public static List<DgRow> GenerateCalls()
+		{			
+			for (int i = 0; i < 50; i++)
 			{
-				mainQ.Enqueue(a, rand.Next(2, lowestBloodPriority));
+				string a = rand.Next(1, maxNumber).ToString("D5");
+				if (!mainQ.Contains(a))
+				{
+					if (vipList.Contains(a))
+						AddVIPCall(a);
+					else
+						mainQ.Enqueue(a, rand.Next(2, lowestBloodPriority));
+				}
 			}
-
-			if (vipList.Contains(a))
-			{
-				MakeVIP(a);
+			string k = "";
+			dgRows = new List<DgRow>();
+			for (int i = 0;i < mainQ.Priorities; i++)
+			{				
+				foreach (string str in mainQ.GetElementsWithPriority(i))
+				{
+					dgRows.Add( new DgRow { number = str, priority = i } );				
+				}				
 			}
+			return dgRows;
 		}
 
-		private void MakeVIP(string s)
+		private static void AddVIPCall(string s)
 		{
 			if (!vipQ.Contains(s))
 			{
+				mainQ.Enqueue(s, 1);
 				vipQ.Enqueue(s, 1);
-				
 			}
 		}
+	}
+
+	class DgRow
+	{
+		public string number;
+		public int priority;
 	}
 }

@@ -43,7 +43,6 @@ namespace ClassLibrary
     {
         private ISingleList<T> list = new SingleList<T>();   // køens container
 
-
         // Returnerer antallet af elementer i køen: O(1)
         public int Count
         {
@@ -66,7 +65,8 @@ namespace ClassLibrary
         // Hvis køen er tom, rejser metoden en QueueException.
         public T Dequeue()
         {
-            if (list.Count == 0) throw new QueueException("The queue is empty...");
+            if (list.Count == 0)
+                throw new QueueException("The queue is empty...");
             return list.RemoveFirst();
         }
 
@@ -74,7 +74,8 @@ namespace ClassLibrary
         // Hvis køen er tom, rejser metoden en QueueException.
         public T Peek()
         {
-            if (list.Count == 0) throw new QueueException("The queue is empty...");
+            if (list.Count == 0)
+                throw new QueueException("The queue is empty...");
             return list.First();
         }
 
@@ -95,14 +96,16 @@ namespace ClassLibrary
         {
             T[] elems = queue.list.ToArray();
             T[] arr = new T[elems.Length];
-            for (int n = 0; n < elems.Length; ++n) arr[n] = Tools.Clone(elems[n]);
+            for (int n = 0; n < elems.Length; ++n) 
+                arr[n] = Tools.Clone(elems[n]);
             return arr;
         }
 
         public static explicit operator Queue<T>(T[] arr)
         {
             Queue<T> queue = new Queue<T>();
-            for (int n = 0; n < arr.Length; ++n) queue.Enqueue(Tools.Clone(arr[n]));
+            for (int n = 0; n < arr.Length; ++n) 
+                queue.Enqueue(Tools.Clone(arr[n]));
             return queue;
         }
     }
@@ -209,7 +212,7 @@ namespace ClassLibrary
         {
             T[] arr = new T[Count];
             int n = 0;
-            foreach (var e in this)
+            foreach (T e in this)
             {
                 //Svarer til arr[n++]
                 arr[n] = e;

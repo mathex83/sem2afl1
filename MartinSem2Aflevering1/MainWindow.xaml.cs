@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using MartinSem2Aflevering1.UseClassLibrary;
 
 namespace MartinSem2Aflevering1
 {
@@ -25,6 +26,7 @@ namespace MartinSem2Aflevering1
 		public MainWindow()
 		{
 			InitializeComponent();
+			//dg1.ItemsSource = HandleCall.oc;
 		}
 
 		private void ExitClick(object sender, RoutedEventArgs e)
@@ -34,8 +36,10 @@ namespace MartinSem2Aflevering1
 
 		private void StartClick(object sender, RoutedEventArgs e)
 		{
-			UseClassLibrary.HandleCall handle = new UseClassLibrary.HandleCall();
-			handle.GenerateCalls();
+			foreach (var item in HandleCall.GenerateCalls())
+			{
+				dg1.Items.Add(new { Number = item.number, Priority = item.priority });					
+			}
 		}
 	}
 }
