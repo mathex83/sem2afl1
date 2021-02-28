@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Windows;
 
 namespace MartinSem2Aflevering1.UseClassLibrary
@@ -78,6 +76,7 @@ namespace MartinSem2Aflevering1.UseClassLibrary
 			return output;
 		}
 
+		//Takes a call (Remove the first call added in lowest priority queue and adds to ongoingList).
 		public static string TakeACall()
 		{
 			string startedCall;
@@ -111,11 +110,7 @@ namespace MartinSem2Aflevering1.UseClassLibrary
 			return startedCall;
 		}
 
-		public static void PrioritizeACall(CallerItem element)
-		{
-			
-		}
-
+		//Ends a call. (Removes it from ongoingList and adds it to endedList.
 		public static void EndACall()
 		{
 			if (ongoingList.Count > 0)
