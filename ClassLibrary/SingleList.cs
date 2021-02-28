@@ -13,7 +13,7 @@ namespace ClassLibrary
         void AddFirst(T elem);              // indsætter et element som det første i listen
         void AddLast(T elem);               // indsætter et element som det sidste i listen
         void AddAfter(T elem1, T elem2);    // indsætter elementet elem2 som en efterfølger til elem1
-        T RemoveFirst();                         // sletter det første element i listen og returnerer det
+        T RemoveFirst();                    // sletter det første element i listen og returnerer det
         void Remove(T elem);                // sletter elementet elem
         void Clear();                       // sletter alle elementer i listen
         bool Contains(T elem);              // tester om elementet elem findes i listen
@@ -44,7 +44,8 @@ namespace ClassLibrary
         // Opretter en liste initialiseret med elementer i arrayet elems. Listen vil indeholde elementerne i samme orden som i elems.
         public SingleList(params T[] elems)
         {
-            for (int i = elems.Length - 1; i >= 0; --i) AddFirst(elems[i]);
+            for (int i = elems.Length - 1; i >= 0; --i)
+                AddFirst(elems[i]);
         }
 
         // Returnerer antallet af elementer i listen.
@@ -78,11 +79,13 @@ namespace ClassLibrary
             // implementeringen starter med et specielt tilfælde, hvor listen er tom
             // i dette tilfælde skal der oprettes en ny node, som hverken har en efterfølger eller forgænger, 
             // og både start og end skal referere til denne node
-            if (count == 0) end = start = new Node { Element = elem };
+            if (count == 0)
+                end = start = new Node { Element = elem };
 
-            // i det generelle tilfælde skal der oprettes en ny node, som pege tilbage på den node, som før var det sidste element
+            // i det generelle tilfælde skal der oprettes en ny node, som peger tilbage på den node, som før var det sidste element
             // den node der før var det sidste, skal pege fremad på nye node, og end skal sættes til at pege på den nye node
-            else end = end.Next = new Node { Element = elem, Prev = end };
+            else 
+                end = end.Next = new Node { Element = elem, Prev = end };
             ++count;
         }
 

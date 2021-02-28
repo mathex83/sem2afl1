@@ -23,16 +23,17 @@
 			<RowDefinition Height="40"/>
 			<RowDefinition/>
 		</Grid.RowDefinitions>
-		<Button Content="Start callcenter mode" Grid.Column="0" Grid.Row="1" Style="{StaticResource CallCenterOptions}"
-				Click="StartClick"/>
-		<TextBlock Text="Schnuph &amp;Verschwind" TextAlignment="Center" FontFamily="Times New Roman" FontSize="40"
-				   Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2"/>
+		<Button Content="Add 10 calls" Grid.Column="0" Style="{StaticResource CallCenterOptions}"
+				Click="GenerateClick"/>
+		<TextBlock Text="Schnuph &amp;Verschwind Callcenter" Style="{StaticResource HeaderBlock}"/>
 		<TextBlock Text="CURRENT CALL: " Grid.Column="2" Style="{StaticResource CallGoingOn}"/>
 		<TextBlock x:Name="curCall" Grid.Column="3" Style="{StaticResource CallGoingOn}"/>
 
-		<Button x:Name="takeBtn" Content="Take call" Grid.Column="0" Style="{StaticResource CallCenterOptions}"/>
-		<Button x:Name="prioBtn" Content="Prioritize call" Grid.Column="1" Style="{StaticResource CallCenterOptions}"/>
-		<Button x:Name="endBtn" Content="End call" Grid.Column="2" Style="{StaticResource CallCenterOptions}"/>
+		
+		<!--<Button x:Name="prioBtn" Content="Prioritize call" Grid.Column="1" Style="{StaticResource CallCenterOptions}"/>-->
+
+		<Button x:Name="takeBtn" Content="Take call" Grid.Column="2" Style="{StaticResource CallCenterOptions}" Click="TakeCallClick"/>
+		<Button x:Name="endBtn" Content="End call" Grid.Column="3" Style="{StaticResource CallCenterOptions}" Click="EndCallClick"/>
 
 		<Button Content="EXIT" Grid.Column="5" Style="{StaticResource CallCenterOptions}"
 				Click="ExitClick"/>
@@ -43,23 +44,21 @@
 
 		<DataGrid x:Name="dg1" Grid.Column="0" Style="{StaticResource DataGrid}">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Name" Binding="{Binding Number}"
-									FontFamily="Times New Roman" FontSize="14" Width="5*"/>
-				<DataGridTextColumn Header="Priority" Binding="{Binding Priority}"
-									FontFamily="Times New Roman" FontSize="14"/>
+				<DataGridTextColumn Header="Number" Binding="{Binding Number}" Width="5*"/>
+				<DataGridTextColumn Header="Priority" Binding="{Binding Priority}"/>
 			</DataGrid.Columns>
 		</DataGrid>
-		<DataGrid x:Name="dg2" Grid.Column="2" Style="{StaticResource DataGrid}" Width="200">
+		<DataGrid x:Name="dg2" Grid.Column="2" Style="{StaticResource DataGrid}" Width="200" IsEnabled="False">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Name" Binding="{Binding Number}" 
-									FontFamily="Times New Roman" FontSize="14"/>
+				<DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
 			</DataGrid.Columns>
 		</DataGrid>
 		<DataGrid x:Name="dg3" Grid.Column="4" Style="{StaticResource DataGrid}" IsEnabled="False">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Name" FontFamily="Times New Roman" FontSize="14" Width="4*"/>
-				<DataGridTextColumn Header="Call ended" FontFamily="Times New Roman" FontSize="14"/>
-				<DataGridTextColumn Header="Priority" FontFamily="Times New Roman" FontSize="14"/>
+				<DataGridTextColumn Header="Number" Binding="{Binding Number}"/>
+				<DataGridTextColumn Header="Call taken" Binding="{Binding CallTaken}"/>
+				<DataGridTextColumn Header="Call ended" Binding="{Binding CallEnded}"/>
+				<DataGridTextColumn Header="Priority" Binding="{Binding Priority}"/>
 			</DataGrid.Columns>
 		</DataGrid>
 

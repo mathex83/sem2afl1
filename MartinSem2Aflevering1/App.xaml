@@ -4,6 +4,16 @@
              xmlns:local="clr-namespace:MartinSem2Aflevering1"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
+		<Style x:Key="HeaderBlock" TargetType="TextBlock">
+			<Setter Property="FontSize" Value="40"/>
+			<Setter Property="FontFamily" Value="Times New Roman"/>
+			<Setter Property="FontWeight" Value="Bold"/>
+			<Setter Property="TextAlignment" Value="Center"/>
+			<Setter Property="VerticalAlignment" Value="Center"/>
+			<Setter Property="Grid.Column" Value="1"/>
+			<Setter Property="Grid.ColumnSpan" Value="4"/>
+			<Setter Property="Grid.Row" Value="1"/>
+		</Style>
 		<Style x:Key="DataGrid" TargetType="DataGrid">
 			<Setter Property="Grid.Row" Value="5"/>
 			<Setter Property="Grid.ColumnSpan" Value="2"/>
@@ -14,6 +24,10 @@
 			<Setter Property="AutoGenerateColumns" Value="False"/>
 			<Setter Property="CanUserResizeColumns" Value="False"/>
 			<Setter Property="ColumnWidth" Value="*"/>
+			<Setter Property="FontFamily" Value="Times New Roman"/>
+			<Setter Property="FontSize" Value="14"/>
+			<Setter Property="CanUserResizeColumns" Value="False"/>
+			<Setter Property="CanUserSortColumns" Value="False"/>
 		</Style>
 		
 		<Style x:Key="CallGoingOn" TargetType="TextBlock">
